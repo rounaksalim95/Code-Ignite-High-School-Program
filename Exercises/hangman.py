@@ -1,9 +1,10 @@
 # Notes: 
 # Note 0: The , is being used at the end of the print statement (lines 36, 39) so that we don't skip to the newline. Make sure you don't use (); let the kids know about this since they've been using () [since they're using python2 () aren't needed]
 # Note 1: Remind the kids that you can't concatenate an integer to a string since they're different types (line 66). Show them how to convert an integer to a string so that they can concatenate the int [str(int_variable)]
-# Note 2: If you get errors running this script then you're machine's path for python probably points to python3; use python2 hangman.py in that case
+# Note 2: Let the kids know that this is another way they can get input from the user rather than using input. This way they don't need to enter strings in quotes s
+# Note 3: If you get errors running this script then you're machine's path for python probably points to python3; use python2 hangman.py in that case
 
-# Ask for the user's name 
+# Ask for the user's name *[Note 2]
 name = raw_input("What is your name? ")
 
 print("Hello, " + name + "! It's time to play hangman!")
@@ -50,7 +51,7 @@ while turns > 0:
         # Break out of the loop 
         break
 
-    # Ask the user for their guess 
+    # Ask the user for their guess *[Note 2]
     guess = raw_input("Guess a character : ") 
 
     # Add the character guessed to the string keeping track of all the guesses the user has made 
