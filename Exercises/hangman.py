@@ -1,84 +1,70 @@
-#importing the time module
-import time
+# Notes: 
+# Note 0: The , is being used at the end of the print statement (lines 36, 39) so that we don't skip to the newline. Make sure you don't use (); let the kids know about this since they've been using () [since they're using python2 () aren't needed]
+# Note 1: Remind the kids that you can't concatenate an integer to a string since they're different types (line 66). Show them how to convert an integer to a string so that they can concatenate the int [str(int_variable)]
+# Note 2: If you get errors running this script then you're machine's path for python probably points to python3; use python2 hangman.py in that case
 
-#welcoming the user
+# Ask for the user's name 
 name = raw_input("What is your name? ")
 
-print "Hello, " + name, "Time to play hangman!"
+print("Hello, " + name + "! It's time to play hangman!")
 
-print ""
+print("Start guessing...")
 
-#wait for 1 second
-time.sleep(1)
-
-print "Start guessing..."
-time.sleep(0.5)
-
-#here we set the secret
+# Set the secret word 
+# Can show them that we can set a list of words and randomly pick one but that might be for a later session
 word = "secret"
 
-#creates an variable with an empty value
+# String used to keep track of all the guesses the user has made so far 
+# Initially start off with an empty string since the user hasn't made any guesses yet; we'll add the guesses later in the loop
 guesses = ''
 
-#determine the number of turns
+# Number of turns the user can make in a game
 turns = 10
 
-# Create a while loop
-
-#check if the turns are more than zero
+# Keep looping until the number of turns remaining is above 0
 while turns > 0:         
 
-    # make a counter that starts with zero
-    failed = 0             
+    # Keep a flag to keep track of whether or not every letter has been guessed 
+    # Start with True and if we find a character that hasn't been guessed then we'll switch the flag to False
+    word_guessed = True
 
-    # for every character in secret_word    
-    for char in word:      
-
-    # see if the character is in the players guess
-        if char in guesses:    
-    
-        # print then out the character
-            print char,    
-
+    # Go through every character in the word  
+    for character in word:      
+    # Check if the character has been guessed by the user, i.e., is it in the guesses string
+        if character in guesses:    
+        # If the character has been guessed then print it out *[Note 0]
+            print character,    
         else:
-    
-        # if not found, print a dash
-            print "_",     
-       
-        # and increase the failed counter with one
-            failed += 1    
+            # The character hasn't been guessed yet so we'll put a dash instead *[Note 0]
+            print "_",  
+            # Since there is a character that hasn't been guessed yet we'll set the flag (word_guessed) to False
+            word_guessed = False
 
-    # if failed is equal to zero
-
-    # print You Won
-    if failed == 0:        
-        print "You won"  
-
-    # exit the script
-        break              
-
+    # For formatting; to get to new line
     print
 
-    # ask the user go guess a character
-    guess = raw_input("guess a character:") 
+    # Check if the word has been guessed; if it has then we exit the loop
+    if (word_guessed == True):
+        # Word has been guessed, congratulate the user
+        print("Good job! You guessed the word!") 
+        # Break out of the loop 
+        break
 
-    # set the players guess to guesses
+    # Ask the user for their guess 
+    guess = raw_input("Guess a character : ") 
+
+    # Add the character guessed to the string keeping track of all the guesses the user has made 
     guesses += guess                    
 
-    # if the guess is not found in the secret word
+    # Check if the user's guess is in the word; if it isn't then we decrement the number of turns the user has left
     if guess not in word:  
- 
-     # turns counter decreases with 1 (now 9)
-        turns -= 1        
- 
-    # print wrong
-        print "Wrong"    
- 
-    # how many turns are left
-        print "You have", + turns, 'more guesses' 
- 
-    # if the turns are equal to zero
-        if turns == 0:           
-    
-        # print "You Loose"
-            print "You Loose"  
+    # Decrement the number of turns 
+        turns = turns - 1
+    # Let the user know their guess was wrong
+        print("Wrong guess")    
+    # Let the user know how many turns they have left *[Note 1]
+        print("You have " + str(turns) + " left")
+
+    # Check whether the user has run out of turns and let them know if they are 
+        if(turns == 0):
+            print("Sorry, you're out of turns. Better luck next time!")
