@@ -1,0 +1,15 @@
+#	Review 2 
+-	Henry Cavill video
+-	While loops
+-	Lists
+	-	append
+	-	remove
+	-	length
+	-	accessing an element (indexing)
+	-	emphasize type agnosticism
+	-	looping through a list (foreach)
+	-	strings are lists
+-	Random
+	-	Importing modules
+	-	Generate a list with random and three strings
+	-	Create a list of actions and iterate through list to find score
